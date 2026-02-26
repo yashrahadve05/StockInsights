@@ -14,47 +14,45 @@ import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
 
-const UserDropdown = () => {
+const UserDropdown = ({ user }: { user: User }) => {
     const router = useRouter();
 
     const handleSignOut = async () => {
         router.push("/sign-in");
     };
 
-    const user = { name: "Yash", email: "yash@gmail.com" };
-
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button
                     variant="ghost"
-                    className="flex px-3 items-center gap-3 text-gray-400 hover:text-yellow-500"
+                    className="flex px-2 py-6 items-center gap-3 text-gray-400 hover:text-yellow-500 hover:bg-gray-700 cursor-pointer"
                 >
                     <div className="hidden md:flex flex-col items-center">
                         <span className="text-base font-medium text-gray-400">
-                            {user.name}
+                            {user.name.toUpperCase().split(' ')[0]}
                         </span>
                     </div>
                     <Avatar className="h-8 w-8">
                         <AvatarImage src="/" />
                         <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                            {user.name[0]}
+                            {user.name[0].toUpperCase()}
                         </AvatarFallback>
                     </Avatar>
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className="text-gray-400">
+            <DropdownMenuContent className="text-gray-400 bg-gray-800">
                 <DropdownMenuLabel>
                     <div className="flex relative items-center gap-3 py-2">
                         <Avatar className="h-8 w-8">
                             <AvatarImage src="/" />
                             <AvatarFallback className="bg-yellow-500 text-yellow-900 text-sm font-bold">
-                                {user.name[0]}
+                                {user.name[0].toUpperCase()}
                             </AvatarFallback>
                         </Avatar>
                         <div className="flex flex-col items-center">
                             <span className="text-base font-medium text-gray-400">
-                                {user.name}
+                                {user.name.toLocaleUpperCase()}
                             </span>
                             <span className="text-sm text-gray-500">
                                 {user.email}
