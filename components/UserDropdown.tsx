@@ -13,11 +13,26 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import NavItems from "./NavItems";
+import { signOut } from "@/lib/actions/auth.actions";
+import { useEffect, useState } from "react";
 
 const UserDropdown = ({ user }: { user: User }) => {
     const router = useRouter();
 
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    if (!mounted) {
+        return (
+            <div className="w-10 h-10 rounded-full bg-gray-200 animate-pulse" />
+        );
+    }
+
     const handleSignOut = async () => {
+        await signOut();
         router.push("/sign-in");
     };
 
@@ -30,7 +45,7 @@ const UserDropdown = ({ user }: { user: User }) => {
                 >
                     <div className="hidden md:flex flex-col items-center">
                         <span className="text-base font-medium text-gray-400">
-                            {user.name.toUpperCase().split(' ')[0]}
+                            {user.name.toUpperCase().split(" ")[0]}
                         </span>
                     </div>
                     <Avatar className="h-8 w-8">

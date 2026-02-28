@@ -1,18 +1,26 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { auth } from "@/lib/better-auth/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
-const layout = ({ children }: { children: React.ReactNode }) => {
+const layout = async ({ children }: { children: React.ReactNode }) => {
+
+    const session = await auth.api.getSession({ headers: await headers()})
+
+    if(session?.user) redirect("/")
+
     return (
         <main className="auth-layout">
             <section className="auth-left-section scrollbar-hide-default">
                 <Link href="/" className="auth-logo">
                     <Image
-                        src="/assets/icons/logo.svg"
+                        src="/assets/icons/logo.png"
                         alt="StockInsights"
                         width={140}
                         height={32}
-                        className="h-8 w-auto"
+                        className="h-8 w-auto cursor-pointer rounded-lg"
                     />
                 </Link>
 
