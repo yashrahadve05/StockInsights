@@ -5,6 +5,8 @@ import { auth } from "@/lib/better-auth/auth";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 
+import logo from "@/public/assets/icons/logo.png"
+
 const layout = async ({ children }: { children: React.ReactNode }) => {
 
     const session = await auth.api.getSession({ headers: await headers()})
@@ -16,10 +18,10 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
             <section className="auth-left-section scrollbar-hide-default">
                 <Link href="/" className="auth-logo">
                     <Image
-                        src="/assets/icons/logo.png"
+                        src={logo}
                         alt="StockInsights"
-                        width={140}
-                        height={32}
+                        width={150}
+                        height={40}
                         className="h-8 w-auto cursor-pointer rounded-lg"
                     />
                 </Link>
