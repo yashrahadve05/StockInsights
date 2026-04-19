@@ -15,7 +15,12 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "StockInsights",
-  description: "Track real-time stock prices and ge personalized alerts and explore detailed company insights.",
+  description: "Track real-time stock prices and get personalized alerts and explore detailed company insights.",
+  icons: {
+    icon: "/favicon.ico", // Points to public/favicon.ico
+    shortcut: "/favicon.ico", // Optional: cleaner look in some browsers
+    apple: "/favicon.ico", // Optional: for iOS home screen
+  },
 };
 
 export default function RootLayout({
